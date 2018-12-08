@@ -1,7 +1,7 @@
 <?php
 /**
  * PHP version 7.2
- * src/list_users.php
+ * src/crud_cli/list_users.php
  *
  * @category Scripts
  * @author   Javier Gil <franciscojavier.gil@upm.es>
@@ -12,12 +12,12 @@
 use MiW\Results\Entity\User;
 use MiW\Results\Utils;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 // Carga las variables de entorno
 $dotenv = new \Dotenv\Dotenv(
-    __DIR__ . '/..',
-    Utils::getEnvFileName(__DIR__ . '/..')
+    __DIR__ . '/../..',
+    Utils::getEnvFileName(__DIR__ . '/../..')
 );
 $dotenv->load();
 
