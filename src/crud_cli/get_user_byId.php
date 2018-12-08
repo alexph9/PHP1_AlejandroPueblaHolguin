@@ -22,7 +22,7 @@ $dotenv->load();
 
 $entityManager = Utils::getEntityManager();
 
-if ($argc !== 2) {
+if ($argc < 2 || $argc > 3) {
     $fich = basename(__FILE__);
     echo <<< MARCA_FIN
 
