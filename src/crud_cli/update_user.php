@@ -70,7 +70,8 @@ switch ($enabled){
 try {
     $entityManager->persist($user);
     $entityManager->flush();
-    echo 'Updated User with ID ' . $user->getId() . PHP_EOL;
+    echo 'User with ID ' . $user->getId() .
+       'was updated.' . PHP_EOL;
 } catch (Exception $exception) {
     echo $exception->getMessage() . PHP_EOL;
 }
