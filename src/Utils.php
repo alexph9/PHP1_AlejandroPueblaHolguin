@@ -67,7 +67,7 @@ trait Utils
     }
 
     /**
-     * Get .env filename (.env.docker || .env || .env.dist)
+     * Get .env filename (.env.docker || .env || .env)
      *
      * @param string $dir      directory
      * @param string $filename filename
