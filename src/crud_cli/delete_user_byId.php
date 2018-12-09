@@ -1,7 +1,6 @@
 <?php
 /**
  * PHP version 7.2
- * src/crud_cli/create_regular_user.php
  *
  * @category Scripts
  * @author   Alejandro Puebla Holguin <a.pueblah@alumnos.upm.es>

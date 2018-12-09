@@ -7,6 +7,7 @@
  * @license  https://opensource.org/licenses/MIT MIT License
  * @link     http://www.etsisi.upm.es ETS de Ingeniería de Sistemas Informáticos
  */
+
 use MiW\Results\Entity\Result;
 use MiW\Results\Utils;
 
@@ -21,36 +22,34 @@ $dotenv->load();
 
 $entityManager = Utils::getEntityManager();
 
-if ( $argc < 2 || $argc > 3) {
+if ($argc !== 2) {
     $fich = basename(__FILE__);
     echo <<< MARCA_FIN
 
-    Usage: $fich <ResultId>
+    Usage: $fich <ResultId> 
 
 MARCA_FIN;
     exit(0);
 }
 
-$resultId =  $argv[1];
+$resultId = (int) $argv[1];
 
-$userRepository = $entityManager->getRepository(Result::class);
+$resultRepository = $entityManager->getRepository(Result::class);
 $result = $entityManager
     ->getRepository(Result::class)
     ->findOneBy(['id' => $resultId]);
 
-if( $result === null) {
+if ($result === null) {
     echo 'Result with ID ' . $resultId
         . ' not exist. ' . PHP_EOL;
     exit(1);
 }
 
-if (in_array('--json', $argv, true)) {
-    echo json_encode($result, JSON_PRETTY_PRINT);
-    echo PHP_EOL;
-} else {
-    echo PHP_EOL
-        .sprintf('%3s - %3s - %22s - %s', 'Id', 'Result', 'Username', 'Time')
-        . PHP_EOL;
-    /** @var Result $result */
-    echo $result . PHP_EOL.PHP_EOL;
+try {
+    $entityManager->remove($result);
+    $entityManager->flush();
+    echo 'Result with ID  ' . $resultId
+        . ' was deleted.' . PHP_EOL;
+} catch (Exception $exception) {
+    echo $exception->getMessage();
 }
