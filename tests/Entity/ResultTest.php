@@ -71,9 +71,8 @@ class ResultTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstructor(): void
     {
-        self::markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        self::assertEquals(self::USERNAME, $this->result->getUser());
+        self::assertEquals(self::POINTS, $this->result->getResult());
     }
 
     /**
@@ -84,9 +83,7 @@ class ResultTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetId():void
     {
-        self::markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        self::assertEquals(0, $this->result->getId());
     }
 
     /**
@@ -98,9 +95,8 @@ class ResultTest extends \PHPUnit\Framework\TestCase
      */
     public function testResult(): void
     {
-        self::markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this->result->setResult(2019);
+        self::assertEquals(2019, $this->result->getResult());
     }
 
     /**
@@ -112,9 +108,8 @@ class ResultTest extends \PHPUnit\Framework\TestCase
      */
     public function testUser(): void
     {
-        self::markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this->user->setUsername(self::USERNAME.'alex');
+        self::assertEquals(self::USERNAME.'alex', $this->result->getUser());
     }
 
     /**
@@ -126,9 +121,10 @@ class ResultTest extends \PHPUnit\Framework\TestCase
      */
     public function testTime(): void
     {
-        self::markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $date = '2011-08-13 13:25:00';
+        $deteDT = \DateTime::createFromFormat('Y-m-d H:i:s', $date);
+        $this->result->setTime($deteDT);
+        self::assertEquals($deteDT, $this->result->getTime());
     }
 
     /**
@@ -139,9 +135,9 @@ class ResultTest extends \PHPUnit\Framework\TestCase
      */
     public function testToString(): void
     {
-        self::markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $toString = $this->result->__toString();
+        $result = strpos($toString, 'alex');
+        self::assertFalse($result);
     }
 
     /**
@@ -152,8 +148,7 @@ class ResultTest extends \PHPUnit\Framework\TestCase
      */
     public function testJsonSerialize(): void
     {
-        self::markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $jsonSerialize = $this->result->jsonSerialize();
+        self::assertTrue(is_array($jsonSerialize));
     }
 }
